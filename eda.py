@@ -27,8 +27,8 @@ def check_df(dataframe, head=5):
     print("##################### Quantiles #####################")
     print(dataframe.quantile([0, 0.05, 0.50, 0.95, 0.99, 1]).T)
 
-def grab_col_names(dataframe, cat_th=10, car_th=20):
 
+def grab_col_names(dataframe, cat_th=10, car_th=20):
     cat_cols = [col for col in dataframe.columns if dataframe[col].dtypes == "O"]
 
     num_but_cat = [col for col in dataframe.columns if dataframe[col].nunique() < cat_th and
@@ -56,8 +56,6 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
     # num_but_cat sadece raporlama için verilmiştir.
 
     return cat_cols, cat_but_car, num_cols, num_but_cat
-
-
 
 
 #############################################
@@ -88,7 +86,6 @@ def num_summary(dataframe, numerical_col, plot=False):
         plt.show()
 
 
-
 #############################################
 # TARGET
 #############################################
@@ -99,3 +96,33 @@ def target_summary_with_cat(dataframe, target, categorical_col):
 
 def target_summary_with_num(dataframe, target, numerical_col):
     print(dataframe.groupby(target).agg({numerical_col: "mean"}), end="\n\n\n")
+
+
+#############################################
+# DATA VISUALIZATION
+#############################################
+
+def data_visual(dataframe, country, plt_color='r'):
+    dataframe = dataframe.T
+    new_header = dataframe.iloc[0]
+    dataframe = dataframe[1:]
+    dataframe.columns = new_header
+    dataframe[country].plot(color=plt_color, label=country)
+    plt.xlabel("Year")
+    plt.ylabel("Export Value")
+    plt.legend()
+    plt.show()
+
+
+def line_plt_compare_country(dataframe, countries, plt_colors):
+    dataframe = dataframe.T
+    new_header = dataframe.iloc[0]
+    dataframe = dataframe[1:]
+    dataframe.columns = new_header
+    for i, j in tuple(zip(countries, plt_colors)):
+        dataframe[i].plot(color=j, label=i)
+
+    plt.xlabel("Year")
+    plt.ylabel("Export Value")
+    plt.legend()
+    plt.show()

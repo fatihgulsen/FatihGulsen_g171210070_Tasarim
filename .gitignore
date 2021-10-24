@@ -116,3 +116,16 @@ dmypy.json
 # VsCode settings
 
 .vscode/
+
+# Pycharm settings
+
+.idea/
+
+# Docx - Doc - Ppt -Pptx
+*.docx
+*.doc
+*.ppt
+*.pptx
+
+# Raporlar
+Raporlar/
