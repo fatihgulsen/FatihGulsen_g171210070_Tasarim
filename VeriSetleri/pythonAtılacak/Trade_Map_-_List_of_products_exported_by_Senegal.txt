@@ -1,0 +1,98 @@
+﻿Code	Product label	Exported value in 2009	Exported value in 2010	Exported value in 2011	Exported value in 2012	Exported value in 2013	Exported value in 2014	Exported value in 2015	Exported value in 2016	Exported value in 2017	Exported value in 2018	Exported value in 2019	Exported value in 2020	
+TOTAL	"All products"	2017386	2085662	2541705	2531665	2660989	2750172	2611672	2640277	3013160	3630401	4175809	3934554	
+71	"Natural or cultured pearls, precious or semi-precious stones, precious metals, metals clad ..."	182896	204920	248262	359386	381759	353060	257376	329544	379493	565051	642139	736119	
+27	"Mineral fuels, mineral oils and products of their distillation; bituminous substances; mineral ..."	440823	436104	374420	360804	439199	460980	362449	282196	445327	572632	831360	629026	
+03	"Fish and crustaceans, molluscs and other aquatic invertebrates"	228373	232251	300331	262947	302941	374587	331738	365203	396428	472819	496089	431684	
+28	"Inorganic chemicals; organic or inorganic compounds of precious metals, of rare-earth metals, ..."	150205	201876	345372	279552	170074	108588	164446	199981	170474	288392	340510	270500	
+12	"Oil seeds and oleaginous fruits; miscellaneous grains, seeds and fruit; industrial or medicinal ..."	3909	9060	15147	17191	33225	14606	90519	108041	90632	84548	195402	203413	
+26	"Ores, slag and ash"	35	230	1192	236	202	20269	93213	99615	145160	179705	196980	202189	
+25	"Salt; sulphur; earths and stone; plastering materials, lime and cement"	185677	239728	280885	269932	214187	252822	269161	266656	257293	206752	193706	174341	
+21	"Miscellaneous edible preparations"	45029	49335	74181	93706	132293	126919	115975	116676	137008	146184	144673	148577	
+72	"Iron and steel"	84275	99522	150424	137316	118284	83630	51008	42307	77750	97065	102057	109291	
+07	"Edible vegetables and certain roots and tubers"	21560	24839	30872	26868	53723	59097	48674	52234	68530	72277	69993	89020	
+33	"Essential oils and resinoids; perfumery, cosmetic or toilet preparations"	48454	44508	46408	46326	46966	55660	47084	48392	53421	73299	72498	78240	
+08	"Edible fruit and nuts; peel of citrus fruit or melons"	8768	8976	17050	21334	29533	30264	23041	32743	37392	69263	100479	74211	
+24	"Tobacco and manufactured tobacco substitutes"	88015	87689	99645	87221	128110	132740	127353	114232	108045	96190	74148	62735	
+67	"Prepared feathers and down and articles made of feathers or of down; artificial flowers; articles ..."	4073	3327	2827	10620	28867	34551	36761	41858	52551	61402	35892	58227	
+19	"Preparations of cereals, flour, starch or milk; pastrycooks' products"	10037	12351	29464	38319	48245	48388	49650	32883	56946	41810	35071	56078	
+16	"Preparations of meat, of fish or of crustaceans, molluscs or other aquatic invertebrates"	12566	4295	3366	625	12267	14884	11741	6029	10734	21735	68701	52306	
+89	"Ships, boats and floating structures"	1460	767	1205	22029	651	721	296	283	1923	808	16719	42854	
+84	"Machinery, mechanical appliances, nuclear reactors, boilers; parts thereof"	22434	29136	31783	38396	20519	39459	35183	33164	31259	29361	36415	40396	
+39	"Plastics and articles thereof"	50635	36616	31746	37621	35194	41865	37920	41458	40790	42269	33113	38334	
+31	"Fertilisers"	11082	9276	13065	7373	11456	31813	10508	17346	32597	46919	50267	36987	
+55	"Man-made staple fibres"	1514	1871	1378	5780	17152	20832	22690	24969	34539	34982	26635	35637	
+34	"Soap, organic surface-active agents, washing preparations, lubricating preparations, artificial ..."	8052	17564	16277	12158	12910	11761	9997	15040	15657	18035	22285	27477	
+10	"Cereals"	50020	23366	54969	43693	39487	41562	38272	46306	32371	46491	52769	26456	
+87	"Vehicles other than railway or tramway rolling stock, and parts and accessories thereof"	46537	41167	32114	29651	16411	23352	19686	25295	34930	16228	27441	24638	
+85	"Electrical machinery and equipment and parts thereof; sound recorders and reproducers, television ..."	23971	26202	29265	44026	35955	47729	47603	32664	39034	31358	21787	24495	
+22	"Beverages, spirits and vinegar"	3715	3970	5365	3945	4858	4112	4229	3221	5431	5454	8406	22045	
+73	"Articles of iron or steel"	11047	14309	12386	14372	13842	15299	11401	19370	16258	17650	13469	19413	
+48	"Paper and paperboard; articles of paper pulp, of paper or of paperboard"	20700	11997	14398	15800	14161	14080	14326	17081	12532	14305	14468	18936	
+15	"Animal or vegetable fats and oils and their cleavage products; prepared edible fats; animal ..."	39272	67920	93848	34243	43131	51129	83016	35232	39016	62082	79929	17102	
+69	"Ceramic products"	78	292	250	202	266	552	459	240	200	322	404	13541	
+38	"Miscellaneous chemical products"	5671	10710	13715	14647	17077	12934	12148	17295	14447	13920	15752	12841	
+20	"Preparations of vegetables, fruit, nuts or other parts of plants"	2865	1424	1507	7309	8269	5486	10297	8400	13910	9897	12137	11745	
+52	"Cotton"	14158	21012	24330	21601	23575	22544	15503	14824	11512	13200	12007	10136	
+04	"Dairy produce; birds' eggs; natural honey; edible products of animal origin, not elsewhere ..."	12859	14298	20960	23683	41004	16806	13924	8418	6785	9395	5903	9873	
+64	"Footwear, gaiters and the like; parts of such articles"	3517	3591	1981	1483	1743	2944	3535	2427	2757	5069	5747	9452	
+29	"Organic chemicals"	2465	3679	4742	4207	3791	4677	3943	4359	4683	7271	6656	7731	
+23	"Residues and waste from the food industries; prepared animal fodder"	7537	9006	13909	3526	12097	14581	12187	6272	4910	8147	7534	7608	
+78	"Lead and articles thereof"	0	1003	5043	5632	6471	6510	3121	5712	7778	7194	7954	7326	
+40	"Rubber and articles thereof"	1996	1682	2706	3474	3484	3037	4779	4328	5742	7388	5845	6744	
+74	"Copper and articles thereof"	8087	8121	11012	11915	21814	20387	15874	11106	10435	6880	7400	6679	
+18	"Cocoa and cocoa preparations"	2310	2426	7295	4728	5248	5949	5530	7285	7670	8368	7843	6638	
+44	"Wood and articles of wood; wood charcoal"	1869	3054	5537	6795	6071	5363	5281	6526	7579	7954	5684	6246	
+94	"Furniture; bedding, mattresses, mattress supports, cushions and similar stuffed furnishings; ..."	1904	3431	3264	4875	5954	3545	3221	8066	4699	3754	5115	6197	
+11	"Products of the milling industry; malt; starches; inulin; wheat gluten"	3986	6006	5391	7390	7014	6984	9191	6304	5313	7008	5186	5872	
+17	"Sugars and sugar confectionery"	1894	2113	4786	3027	2423	3374	3298	4048	8036	13540	6705	5348	
+41	"Raw hides and skins (other than furskins) and leather"	3408	2723	6620	15919	27943	28107	18349	12300	14058	13835	6706	4629	
+63	"Other made-up textile articles; sets; worn clothing and worn textile articles; rags"	11964	5898	6642	7122	5826	9765	2841	3084	2855	3345	3600	3706	
+56	"Wadding, felt and nonwovens; special yarns; twine, cordage, ropes and cables and articles thereof"	59	159	145	133	1416	2005	2462	2195	1949	3027	2910	3705	
+88	"Aircraft, spacecraft, and parts thereof"	80227	863	845	8483	1809	827	1890	777	603	15845	3297	3607	
+30	"Pharmaceutical products"	13334	10466	11257	13046	11801	13774	10943	20501	9218	11546	8163	3187	
+46	"Manufactures of straw, of esparto or of other plaiting materials; basketware and wickerwork"	2804	3330	2295	2904	4956	4258	4112	4046	5195	4053	3839	3169	
+13	"Lac; gums, resins and other vegetable saps and extracts"	1523	1703	3441	3192	3639	3011	2567	2320	2651	1705	1218	2546	
+62	"Articles of apparel and clothing accessories, not knitted or crocheted"	582	505	395	284	450	2795	676	600	882	262	358	2488	
+82	"Tools, implements, cutlery, spoons and forks, of base metal; parts thereof of base metal"	947	912	1049	10551	1385	1412	5955	8852	8260	5240	1145	2406	
+81	"Other base metals; cermets; articles thereof"	0	0	0	26	21	168	9	14	122	283	95	2336	
+09	"Coffee, tea, maté and spices"	76	125	473	1031	2838	5774	3681	1447	1831	4300	2030	2322	
+54	"Man-made filaments; strip and the like of man-made textile materials"	1496	698	839	767	1172	1754	1460	663	1280	1802	1675	2047	
+70	"Glass and glassware"	1275	2084	2390	2408	2029	3003	2475	2439	1677	1991	1871	1898	
+76	"Aluminium and articles thereof"	4787	4178	4850	2782	6305	5924	5118	2749	3855	3213	2317	1688	
+90	"Optical, photographic, cinematographic, measuring, checking, precision, medical or surgical ..."	3180	2105	1835	1280	785	1210	1383	1384	1910	2095	1355	1313	
+96	"Miscellaneous manufactured articles"	986	668	550	420	441	572	439	673	555	518	708	1246	
+32	"Tanning or dyeing extracts; tannins and their derivatives; dyes, pigments and other colouring ..."	2928	2665	1448	2266	1462	2447	1849	1799	1382	1458	1558	937	
+49	"Printed books, newspapers, pictures and other products of the printing industry; manuscripts, ..."	1676	898	1430	1063	1150	1235	1631	2042	1033	1465	1769	900	
+06	"Live trees and other plants; bulbs, roots and the like; cut flowers and ornamental foliage"	138	393	674	584	2825	1299	245	797	484	886	696	847	
+35	"Albuminoidal substances; modified starches; glues; enzymes"	1928	2029	1543	1460	1942	1033	842	840	555	530	646	711	
+86	"Railway or tramway locomotives, rolling stock and parts thereof; railway or tramway track fixtures ..."	230	136	218	3749	2233	952	1086	510	3328	357	1677	689	
+61	"Articles of apparel and clothing accessories, knitted or crocheted"	294	161	391	229	217	334	307	299	289	177	283	658	
+97	"Works of art, collectors' pieces and antiques"	1386	1523	2214	1143	1145	2281	849	821	2913	733	1772	476	
+93	"Arms and ammunition; parts and accessories thereof"	953	1752	637	683	1321	1555	126	829	285	1446	3	324	
+83	"Miscellaneous articles of base metal"	191	281	355	492	570	315	101	80	275	433	343	295	
+36	"Explosives; pyrotechnic products; matches; pyrophoric alloys; certain combustible preparations"	338	943	2591	2061	512	1226	938	262	836	1679	1053	295	
+68	"Articles of stone, plaster, cement, asbestos, mica or similar materials"	2005	1727	534	149	49	165	381	358	512	313	370	267	
+01	"Live animals"	506	272	159	228	371	220	252	345	340	174	187	254	
+02	"Meat and edible meat offal"	704	634	532	268	1061	448	142	386	1288	2528	1803	221	
+05	"Products of animal origin, not elsewhere specified or included"	167	123	298	298	124	234	96	256	169	59	105	209	
+95	"Toys, games and sports requisites; parts and accessories thereof"	203	122	333	26	62	132	95	216	71	53	100	90	
+65	"Headgear and parts thereof"	38	28	22	73	227	720	11	279	161	57	5	77	
+42	"Articles of leather; saddlery and harness; travel goods, handbags and similar containers; articles ..."	224	191	197	217	308	286	183	171	194	94	73	68	
+57	"Carpets and other textile floor coverings"	2	29	39	14	10	45	9	49	29	27	17	64	
+91	"Clocks and watches and parts thereof"	113	76	132	138	187	110	61	47	1294	9	374	49	
+92	"Musical instruments; parts and accessories of such articles"	114	122	102	51	84	142	99	54	116	176	58	35	
+47	"Pulp of wood or of other fibrous cellulosic material; recovered (waste and scrap) paper or ..."	0	0	0	0	2	0	177	24	60	74	201	31	
+14	"Vegetable plaiting materials; vegetable products not elsewhere specified or included"	13	0	6	7	3	11	77	19	55	35	42	31	
+58	"Special woven fabrics; tufted textile fabrics; lace; tapestries; trimmings; embroidery"	1	16	8	6	6	10	2	52	23	0	28	25	
+66	"Umbrellas, sun umbrellas, walking sticks, seat-sticks, whips, riding-crops and parts thereof"	58	0	10	7	0	30	0	1	0	2	3	3	
+59	"Impregnated, coated, covered or laminated textile fabrics; textile articles of a kind suitable ..."	15	26	6	5	244	13	5	45	6	5	0	1	
+60	"Knitted or crocheted fabrics"	0	0	0	3	10	0	0	0	0	0	3	0	
+75	"Nickel and articles thereof"	55	0	0	0	0	0	64	5	98	0	3	0	
+45	"Cork and articles of cork"	0	5	0	0	0	0	0	0	0	0	0	0	
+43	"Furskins and artificial fur; manufactures thereof"	0	0	0	0	0	0	3	0	0	0	1	0	
+50	"Silk"	0	0	0	0	1	0	10	0	1	0	0	0	
+51	"Wool, fine or coarse animal hair; horsehair yarn and woven fabric"	0	0	1	0	30	0	0	19	15	0	0	0	
+53	"Other vegetable textile fibres; paper yarn and woven fabrics of paper yarn"	87	0	0	0	0	0	1	0	0	31	69	0	
+37	"Photographic or cinematographic goods"	1	38	10	2	19	0	7	1	4	0	1	0	
+79	"Zinc and articles thereof"	36	33	97	134	90	127	35	0	55	0	9	0	
+80	"Tin and articles thereof"	4	0	21	0	5	7	19	0	413	162	0	0	
