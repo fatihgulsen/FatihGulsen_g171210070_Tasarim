@@ -122,11 +122,8 @@ dmypy.json
 .idea/
 
 # Docx - Doc - Ppt -Pptx
-*.docx
-*.doc
 *.ppt
 *.pptx
 
-# Raporlar
-Raporlar/
+
 VeriSetleri/ITPD/ITPD_E_R01.csv
