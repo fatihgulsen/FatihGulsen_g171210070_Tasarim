@@ -43,7 +43,4 @@ def remove_outlier(dataframe, col_name):
     return df_without_outliers
 
 
-def read_data(data_dir):
-    df = pd.read_csv(data_dir, sep='\t')
-    df = df.iloc[:, 0:-1]
-    return df
+
