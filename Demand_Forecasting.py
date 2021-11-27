@@ -15,15 +15,13 @@ pd.set_option('display.width', 500)
 # Veri Seti
 ##################################################
 all_data = pd.read_csv(r"VeriSetleri/All_Data/import-exported-value.csv", sep='\t')
+all_data.replace({'0': np.nan, 0: np.nan}, inplace=True)
 all_data = all_data.dropna(axis=0)
-all_data = all_data[(all_data != 0).all(1)]
-
 
 
 df = all_data.melt(id_vars=["Exporter", 'Importers'],
                    var_name="Year",
                    value_name="Value")
-
 df['id'] = np.nan
 df.loc[(df["Year"] == 'Exported value in 2020'), 'id':] = np.arange(
     len(df.loc[(df["Year"] == 'Exported value in 2020'), :]))
@@ -312,9 +310,9 @@ X_test = test[cols]
 
 lgb_params = {'metric': {'mae'},
               'num_leaves': 10,
-              'learning_rate': 0.02,
+              'learning_rate': 0.2,
               'feature_fraction': 0.8,
-              'max_depth': 5,
+              'max_depth': 6,
               'verbose': -1,
               'nthread': -1,
               "num_boost_round": model.best_iteration}
