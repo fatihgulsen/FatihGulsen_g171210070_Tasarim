@@ -3,6 +3,11 @@ import pandas as pd
 from sklearn import preprocessing
 
 
+def label_encoder(dataframe, binary_col):
+    labelencoder = preprocessing.LabelEncoder()
+    dataframe[binary_col] = labelencoder.fit_transform(dataframe[binary_col])
+    return dataframe
+
 def outlier_thresholds(dataframe, col_name):
     quartile1 = dataframe[col_name].quantile(0.01)
     quartile3 = dataframe[col_name].quantile(0.99)
