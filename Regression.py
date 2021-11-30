@@ -1,12 +1,20 @@
+# %%
 import re
 import pandas as pd
 import numpy as np
 from eda import *
 from data_prep import *
+from Visualization import *
 import warnings
 import pandas_profiling as pp
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import DecisionTreeRegressor
+from xgboost import XGBRegressor
 
 warnings.filterwarnings('ignore')
 pd.set_option('display.max_columns', None)
@@ -18,6 +26,7 @@ all_data = pd.read_csv(r"VeriSetleri/All_Data/import-exported-value.csv", sep='\
 all_data.replace({'0': np.nan, 0: np.nan}, inplace=True)
 all_data = all_data.dropna(axis=0)
 all_data = all_data.rename(columns=lambda x: re.sub('[^A-Za-z0-9_]+', '_', x))
+all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
 
 # check_df(all_data)
 # cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
@@ -36,18 +45,19 @@ all_data = all_data.rename(columns=lambda x: re.sub('[^A-Za-z0-9_]+', '_', x))
 imp_exp_list = ['Importers', 'Exporter']
 imp_exp_outer_list = [col for col in all_data.columns if col not in ['Importers', 'Exporter']]
 
+plots = False
 # Model oluşturma
 
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-
+output_df = pd.DataFrame()
+pred_array = np.array([2020, 2021], dtype='int64').reshape(-1, 1)
+# %%
 for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra ile gitmektedir.
     index = row[0]
     row = row[1]  # pandas serieslere dönüştürmek için kullanıldı indexi ayrı tutuyoruz
     imp_exp = row[imp_exp_list]
     xy = row[imp_exp_outer_list].reset_index().rename(columns={'index': 'Year', index: 'Value'})
     xy = label_encoder(xy, 'Year')
-    xy['Year'] = xy['Year'].apply(lambda x: x+2009)
+    xy['Year'] = xy['Year'].apply(lambda x: x + 2009)
     # 0 yılı 2009 olarak kabul ediyoruz ve bunları label encoder ile integer değerlere dönüştürüoyurz
 
     x = xy.iloc[:-1, :-1]
@@ -59,39 +69,93 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     X_values = x.values
     Y_values = y.values
 
+    # Linear Regression
     lin_reg = LinearRegression(n_jobs=-1)
     lin_reg.fit(X_values, Y_values)
-    predictedLinear = lin_reg.predict(X_values)
 
-    plt.scatter(X_values, Y_values, color='red')
-    plt.plot(X_values, predictedLinear, color='blue')
-    plt.title(f'Year-Values Lin-reg \nImporter : {row["Importers"]} \n Exporter : {row["Exporter"]}')
-    plt.xlabel('Year')
-    plt.ylabel('Value')
-    plt.show()
-    print("Linear R2 degeri:")
-    print(r2_score(Y_values, predictedLinear))
+    predictedLinear = lin_reg.predict(X_values)
+    models_sum(row, predictedLinear, X_values, Y_values, 'Linear Regression ', plots)
 
     predictedLinear2020 = lin_reg.predict(x_2020)
-    plt.scatter(x_2020, y_2020, color='red')
-    plt.plot(x_2020, predictedLinear2020, color='blue')
-    plt.title(f'Year-Values Lin-reg \nImporter : {row["Importers"]} \n Exporter : {row["Exporter"]}')
-    plt.xlabel('Year')
-    plt.ylabel('Value')
-    plt.show()
-    print("Linear R2 degeri:")
-    print(r2_score(y_2020, predictedLinear2020))
+    models_sum(row, predictedLinear2020, x_2020, y_2020, 'Linear Regression 2020-2021 ', plots)
 
-    lin_reg.predict(np.array(2020).reshape(-1, 1)) # SADECE 2020
-    #TODO bunları ana pandas dataframe e ekle gözle karşılaştırma yapılsın
-    #TODO eklendikten sonra her bir algoritma ile tek tek çıktılarını al
+    sonuc_2020_2021 = lin_reg.predict(pred_array)  # SADECE 2020-2021
+    sonuc_2020_2021 = np.round(sonuc_2020_2021,
+                               0)  # Tek bir formatta görüntülemek adına ,(virgül)den sonrası yuvarlandı
+    row['Lineer Reg Pred 2020'] = sonuc_2020_2021[0]
+    row['Lineer Reg Pred 2021'] = sonuc_2020_2021[1]
 
-    print('------- IMPORTANCE -------')
-    importance = lin_reg.coef_[0]
-    # summarize feature importance
-    for i, v in enumerate(importance):
-        print('Feature: %0d, Score: %.5f' % (i, v))
-    # plot feature importance
-    plt.bar([x for x in range(len(importance))], importance)
-    plt.show()
-    print('-------------------------')
+    # TODO eklendikten sonra her bir algoritma ile tek tek çıktılarını al
+
+    # Polynomial Regression
+    poly_fea = PolynomialFeatures(degree=3)
+    x_poly = poly_fea.fit_transform(X_values)
+    poly_reg = LinearRegression(n_jobs=-1)
+    poly_reg.fit(x_poly, Y_values)
+
+    predictedPoly = poly_reg.predict(poly_fea.fit_transform(X_values))
+    models_sum(row, predictedPoly, X_values, Y_values, 'Polynomial Regression Degree=3 ', plots)
+
+    predictedPoly2020 = poly_reg.predict(poly_fea.fit_transform(x_2020))
+    models_sum(row, predictedPoly2020, x_2020, y_2020, 'Polynomial Regression Degree=3  2020-2021 ', plots)
+
+    sonuc_2020_2021 = poly_reg.predict(poly_fea.fit_transform(pred_array))
+    sonuc_2020_2021 = np.round(sonuc_2020_2021,
+                               0)
+    row['Poly Reg d3 Pred 2020'] = sonuc_2020_2021[0]
+    row['Poly Reg d3 Pred 2021'] = sonuc_2020_2021[1]
+
+    # Random Forest
+    rf_reg = RandomForestRegressor(n_estimators=15, random_state=1, n_jobs=-1)
+    rf_reg.fit(X_values, Y_values.ravel())
+
+    rf_reg_predict = rf_reg.predict(X_values)
+    models_sum(row, rf_reg_predict, X_values, Y_values, 'Random Forest ', plots)
+
+    rf_reg_predict2020 = rf_reg.predict(x_2020)
+    models_sum(row, rf_reg_predict2020, x_2020, y_2020, 'Random Forest 2020-2021 ', plots)
+
+    sonuc_2020_2021 = rf_reg.predict(pred_array)
+    sonuc_2020_2021 = np.round(sonuc_2020_2021,
+                               0)
+    row['Random Forest Pred 2020'] = sonuc_2020_2021[0]
+    row['Random Forest Pred 2021'] = sonuc_2020_2021[1]
+
+    # Decision Tree
+    r_dt = DecisionTreeRegressor(random_state=0)
+    r_dt.fit(X_values, Y_values)
+
+    predictedDTR = r_dt.predict(X_values)
+    models_sum(row, predictedDTR, X_values, Y_values, 'Decision Tree ', plots)
+
+    predictedDTR2020 = r_dt.predict(x_2020)
+    models_sum(row, predictedDTR2020, x_2020, y_2020, 'Decision Tree 2020-2021 ', plots)
+
+    sonuc_2020_2021 = r_dt.predict(pred_array)
+    sonuc_2020_2021 = np.round(sonuc_2020_2021,
+                               0)
+    row['Decision Tree Pred 2020'] = sonuc_2020_2021[0]
+    row['Decision Tree Pred 2021'] = sonuc_2020_2021[1]
+
+    # XG Boost
+    XGB = XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100)
+    XGB.fit(X_values, Y_values)
+
+    predictedXGB = XGB.predict(X_values)
+    models_sum(row, predictedXGB, X_values, Y_values, 'XGBOOST ', plots)
+
+    predictedXGB2020 = XGB.predict(x_2020)
+    models_sum(row, predictedXGB2020, x_2020, y_2020, 'XGBOOST 2020-2021 ', plots)
+
+    sonuc_2020_2021 = XGB.predict(pred_array)
+    sonuc_2020_2021 = np.round(sonuc_2020_2021,
+                               0)
+    row['XG Boost Pred 2020'] = sonuc_2020_2021[0]
+    row['XG Boost Pred 2021'] = sonuc_2020_2021[1]
+
+    output_df = output_df.append(row)
+#%%
+output_file = True
+output_dir = 'output.csv'
+if output_file:
+    output_df.to_csv(output_dir,sep="\t",index=False)
