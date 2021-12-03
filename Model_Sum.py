@@ -6,6 +6,7 @@ import seaborn as sns
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
+from sklearn import tree
 
 
 def SMAPE(preds, target):
@@ -25,10 +26,17 @@ def MAPE(Y_actual, Y_Predicted):
 
 def algo_scatter(row, predictions, x_values, y_values, text=''):
     plt.scatter(x_values, y_values, color='red')
+    plt.grid(True)
     plt.plot(x_values, predictions, color='blue')
     plt.title(f'Year - Values {text} \nImporter : {row["Importers"]} \n Exporter : {row["Exporter"]}')
     plt.xlabel('Year')
     plt.ylabel('Value')
+    plt.show()
+
+
+def tree_plot(dtr_model, row, fontsize=3.8, text=''):
+    plt.title(f'Year - Values {text} \nImporter : {row["Importers"]} \n Exporter : {row["Exporter"]}')
+    tree.plot_tree(dtr_model, fontsize=fontsize)
     plt.show()
 
 
@@ -43,10 +51,11 @@ def metrics_score(text, predictions, y_values):
     print('---------------------------------------------------------\n')
 
 
-def models_sum(row, predictions, x_values, y_values, text='', plot=True):
-    if plot:
+def models_sum(row, predictions, x_values, y_values, text='', plot_metric=[True, True]):
+    if plot_metric[0]:
         algo_scatter(row, predictions, x_values, y_values, text)
-    metrics_score(text, predictions, y_values)
+    if plot_metric[1]:
+        metrics_score(text, predictions, y_values)
 
 
 def compare_models(models, models_name, compare_metric):

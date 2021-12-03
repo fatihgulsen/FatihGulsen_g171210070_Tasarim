@@ -1,16 +1,10 @@
 # %%
 import re
-import pandas as pd
-import numpy as np
 from eda import *
 from data_prep import *
-from Visualization import *
+from Model_Sum import *
 import warnings
-import pandas_profiling as pp
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
@@ -27,6 +21,9 @@ all_data.replace({'0': np.nan, 0: np.nan}, inplace=True)
 all_data = all_data.dropna(axis=0)
 all_data = all_data.rename(columns=lambda x: re.sub('[^A-Za-z0-9_]+', '_', x))
 all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
+
+all_data = all_data.loc[(all_data['Exporter'] == 'Argentina') & (all_data['Importers'] == 'Costa Rica')]
+#Rastgele 2 ülke seçilmiştir görselleştirme ve sonuçlar için
 
 # check_df(all_data)
 # cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
@@ -45,11 +42,12 @@ all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
 imp_exp_list = ['Importers', 'Exporter']
 imp_exp_outer_list = [col for col in all_data.columns if col not in ['Importers', 'Exporter']]
 
-plots = False
+plot_metric = [True, True]
 # Model oluşturma
 
 output_df = pd.DataFrame()
 pred_array = np.array([2020, 2021], dtype='int64').reshape(-1, 1)
+
 # %%
 for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra ile gitmektedir.
     index = row[0]
@@ -74,18 +72,16 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     lin_reg.fit(X_values, Y_values)
 
     predictedLinear = lin_reg.predict(X_values)
-    models_sum(row, predictedLinear, X_values, Y_values, 'Linear Regression ', plots)
+    models_sum(row, predictedLinear, X_values, Y_values, 'Linear Regression ', plot_metric)
 
     predictedLinear2020 = lin_reg.predict(x_2020)
-    models_sum(row, predictedLinear2020, x_2020, y_2020, 'Linear Regression 2020-2021 ', plots)
+    models_sum(row, predictedLinear2020, x_2020, y_2020, 'Linear Regression 2020-2021 ', plot_metric)
 
     sonuc_2020_2021 = lin_reg.predict(pred_array)  # SADECE 2020-2021
     sonuc_2020_2021 = np.round(sonuc_2020_2021,
                                0)  # Tek bir formatta görüntülemek adına ,(virgül)den sonrası yuvarlandı
     row['Lineer Reg Pred 2020'] = sonuc_2020_2021[0]
     row['Lineer Reg Pred 2021'] = sonuc_2020_2021[1]
-
-    # TODO eklendikten sonra her bir algoritma ile tek tek çıktılarını al
 
     # Polynomial Regression
     poly_fea = PolynomialFeatures(degree=3)
@@ -94,10 +90,10 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     poly_reg.fit(x_poly, Y_values)
 
     predictedPoly = poly_reg.predict(poly_fea.fit_transform(X_values))
-    models_sum(row, predictedPoly, X_values, Y_values, 'Polynomial Regression Degree=3 ', plots)
+    models_sum(row, predictedPoly, X_values, Y_values, 'Polynomial Regression Degree=3 ', plot_metric)
 
     predictedPoly2020 = poly_reg.predict(poly_fea.fit_transform(x_2020))
-    models_sum(row, predictedPoly2020, x_2020, y_2020, 'Polynomial Regression Degree=3  2020-2021 ', plots)
+    models_sum(row, predictedPoly2020, x_2020, y_2020, 'Polynomial Regression Degree=3  2020-2021 ', plot_metric)
 
     sonuc_2020_2021 = poly_reg.predict(poly_fea.fit_transform(pred_array))
     sonuc_2020_2021 = np.round(sonuc_2020_2021,
@@ -110,10 +106,10 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     rf_reg.fit(X_values, Y_values.ravel())
 
     rf_reg_predict = rf_reg.predict(X_values)
-    models_sum(row, rf_reg_predict, X_values, Y_values, 'Random Forest ', plots)
+    models_sum(row, rf_reg_predict, X_values, Y_values, 'Random Forest ', plot_metric)
 
     rf_reg_predict2020 = rf_reg.predict(x_2020)
-    models_sum(row, rf_reg_predict2020, x_2020, y_2020, 'Random Forest 2020-2021 ', plots)
+    models_sum(row, rf_reg_predict2020, x_2020, y_2020, 'Random Forest 2020-2021 ', plot_metric)
 
     sonuc_2020_2021 = rf_reg.predict(pred_array)
     sonuc_2020_2021 = np.round(sonuc_2020_2021,
@@ -126,10 +122,12 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     r_dt.fit(X_values, Y_values)
 
     predictedDTR = r_dt.predict(X_values)
-    models_sum(row, predictedDTR, X_values, Y_values, 'Decision Tree ', plots)
+    models_sum(row, predictedDTR, X_values, Y_values, 'Decision Tree ', plot_metric)
 
     predictedDTR2020 = r_dt.predict(x_2020)
-    models_sum(row, predictedDTR2020, x_2020, y_2020, 'Decision Tree 2020-2021 ', plots)
+    models_sum(row, predictedDTR2020, x_2020, y_2020, 'Decision Tree 2020-2021 ', plot_metric)
+    if plot_metric[0]:
+        tree_plot(r_dt, row)
 
     sonuc_2020_2021 = r_dt.predict(pred_array)
     sonuc_2020_2021 = np.round(sonuc_2020_2021,
@@ -142,20 +140,24 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     XGB.fit(X_values, Y_values)
 
     predictedXGB = XGB.predict(X_values)
-    models_sum(row, predictedXGB, X_values, Y_values, 'XGBOOST ', plots)
+    models_sum(row, predictedXGB, X_values, Y_values, 'XGBOOST ', plot_metric)
 
     predictedXGB2020 = XGB.predict(x_2020)
-    models_sum(row, predictedXGB2020, x_2020, y_2020, 'XGBOOST 2020-2021 ', plots)
+    models_sum(row, predictedXGB2020, x_2020, y_2020, 'XGBOOST 2020-2021 ', plot_metric)
 
     sonuc_2020_2021 = XGB.predict(pred_array)
     sonuc_2020_2021 = np.round(sonuc_2020_2021,
                                0)
-    row['XG Boost Pred 2020'] = sonuc_2020_2021[0]
-    row['XG Boost Pred 2021'] = sonuc_2020_2021[1]
+    row['XGBoost Pred 2020'] = sonuc_2020_2021[0]
+    row['XGBoost Pred 2021'] = sonuc_2020_2021[1]
 
     output_df = output_df.append(row)
-#%%
+# %%
 output_file = True
-output_dir = 'output.csv'
+output_dir = 'output'
 if output_file:
-    output_df.to_csv(output_dir,sep="\t",index=False)
+    try:
+        output_df.to_csv(output_dir + '.csv', sep="\t", index=False)
+        output_df.to_excel(output_dir + '.xlsx', index=False)
+    except Exception as e:
+        print(e)
