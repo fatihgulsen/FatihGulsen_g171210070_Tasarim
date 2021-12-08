@@ -9,6 +9,12 @@ from sklearn.metrics import mean_absolute_error
 from sklearn import tree
 
 
+def lgbm_smape(preds, train_data):
+    labels = train_data.get_label()
+    smape_val = SMAPE(np.expm1(preds), np.expm1(labels))
+    return 'SMAPE', smape_val, False
+
+
 def SMAPE(preds, target):
     n = len(preds)
     masked_arr = ~((preds == 0) & (target == 0))

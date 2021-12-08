@@ -27,31 +27,6 @@ df.loc[(df["Year"] == 'Exported value in 2020'), 'id':] = np.arange(
     len(df.loc[(df["Year"] == 'Exported value in 2020'), :]))
 # 2020 yıllarına id atama yapıldı
 
-#################################
-# EDA
-#################################
-# profile = pp.ProfileReport(df)
-# profile.to_file('profile.html')
-# check_df(df)
-
-all_data.corr()
-
-# Ticaret value dağılımı nasıl ?
-df[['Value']].describe().T
-
-# Exporters ülke sayısı ve ülkeler
-df[['Exporter']].nunique()
-df['Exporter'].unique()
-
-# Exporters ülke sayısı ve ülkeler
-df[['Importers']].nunique()
-df['Importers'].unique()
-
-# Exporters yılların yoplam-ortalama-medyan ve standart sapma değerleri
-df.groupby(["Exporter"]).agg({"Value": ["sum", "mean", "median", "std"]})
-df.groupby(["Importers"]).agg({"Value": ["sum", "mean", "median", "std"]})
-
-
 #####################################################
 # Random Noise
 #####################################################

@@ -23,7 +23,7 @@ all_data = all_data.rename(columns=lambda x: re.sub('[^A-Za-z0-9_]+', '_', x))
 all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
 
 all_data = all_data.loc[(all_data['Exporter'] == 'Argentina') & (all_data['Importers'] == 'Costa Rica')]
-#Rastgele 2 ülke seçilmiştir görselleştirme ve sonuçlar için
+# Rastgele 2 ülke seçilmiştir görselleştirme ve sonuçlar için
 
 # check_df(all_data)
 # cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
@@ -154,7 +154,7 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
     output_df = output_df.append(row)
 # %%
 output_file = True
-output_dir = 'output'
+output_dir = 'argentina-costarica'
 if output_file:
     try:
         output_df.to_csv(output_dir + '.csv', sep="\t", index=False)
