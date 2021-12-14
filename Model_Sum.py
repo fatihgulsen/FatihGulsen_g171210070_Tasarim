@@ -40,6 +40,13 @@ def algo_scatter(row, predictions, x_values, y_values, text=''):
     plt.show()
 
 
+def models_sum(row, predictions, x_values, y_values, text='', plot_metric=[True, True]):
+    if plot_metric[0]:
+        algo_scatter(row, predictions, x_values, y_values, text)
+    if plot_metric[1]:
+        metrics_score(text, predictions, y_values)
+
+
 def tree_plot(dtr_model, row, fontsize=3.8, text=''):
     plt.title(f'Year - Values {text} \nImporter : {row["Importers"]} \n Exporter : {row["Exporter"]}')
     tree.plot_tree(dtr_model, fontsize=fontsize)
@@ -55,13 +62,6 @@ def metrics_score(text, predictions, y_values):
     print(f'{text} Mean Absolute Percentage  Error (MAPE): %.3f ' % MAPE(y_values, predictions))
     print(f'{text} Symmetric Mean Absolute Percentage  Error (SMAPE): %.3f ' % SMAPE(y_values, predictions))
     print('---------------------------------------------------------\n')
-
-
-def models_sum(row, predictions, x_values, y_values, text='', plot_metric=[True, True]):
-    if plot_metric[0]:
-        algo_scatter(row, predictions, x_values, y_values, text)
-    if plot_metric[1]:
-        metrics_score(text, predictions, y_values)
 
 
 def compare_models(models, models_name, compare_metric):

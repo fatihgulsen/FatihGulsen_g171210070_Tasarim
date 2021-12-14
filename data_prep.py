@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from sklearn import preprocessing
 
+def one_hot_encoder(dataframe, categorical_cols, drop_first=False):
+    dataframe = pd.get_dummies(dataframe, columns=categorical_cols, drop_first=drop_first)
+    return dataframe
 
 def label_encoder(dataframe, binary_col):
     labelencoder = preprocessing.LabelEncoder()
@@ -15,7 +18,6 @@ def outlier_thresholds(dataframe, col_name):
     up_limit = quartile3 + 1.5 * interquantile_range
     low_limit = quartile1 - 1.5 * interquantile_range
     return low_limit, up_limit
-
 
 def grab_outliers(dataframe, col_name, index=False):
     low, up = outlier_thresholds(dataframe, col_name)
@@ -37,15 +39,9 @@ def check_outlier(dataframe, col_name):
         return False
 
 
-def one_hot_encoder(dataframe, categorical_cols, drop_first=False):
-    dataframe = pd.get_dummies(dataframe, columns=categorical_cols, drop_first=drop_first)
-    return dataframe
 
 
 def remove_outlier(dataframe, col_name):
     low_limit, up_limit = outlier_thresholds(dataframe, col_name)
     df_without_outliers = dataframe[~((dataframe[col_name] < low_limit) | (dataframe[col_name] > up_limit))]
     return df_without_outliers
-
-
-

@@ -17,7 +17,7 @@ plt.rcParams["figure.autolayout"] = True
 sns.set(rc={'figure.figsize': [16.00, 16.00]})
 
 
-def bar_plot(df_catplot, country: str, value: int, _x, _y, _col):
+def bar_plot(df_catplot: pd.DataFrame, country: str, value: int, _x: str, _y: str, _col: str):
     chart = sns.catplot(x=_x, y=_y, col=_col,
                         data=df_catplot.loc[
                             ((df_catplot[_col] == country) & (df_catplot[_y] > value)
@@ -27,7 +27,7 @@ def bar_plot(df_catplot, country: str, value: int, _x, _y, _col):
     plt.show()
 
 
-def pie_plot(_all_data, _x, _y, _title):
+def pie_plot(_all_data: pd.DataFrame, _x: str, _y: str, _title: str):
     colors = sns.color_palette('pastel')
     _all_data = _all_data.groupby([_x]).sum()
     _all_data.plot(kind='pie', y=_y, x=_x, autopct='%1.2f%%', colors=colors,
@@ -38,7 +38,7 @@ def pie_plot(_all_data, _x, _y, _title):
     plt.show()
 
 
-def df_group_agg(df, group: list, agg: dict):
+def df_group_agg(df: pd.DataFrame, group: list, agg: dict):
     new_df = df.groupby(group, as_index=False).agg(agg)
     cols = new_df.columns
     new_col = [col[0] if col[1] == '' else col[0] + '_' + col[1] for col in cols]
