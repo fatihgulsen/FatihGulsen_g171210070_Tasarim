@@ -135,39 +135,19 @@ df = ewm_features(df, alphas, lags)
 # One-Hot Encoding
 #####################################################
 
-df = pd.get_dummies(df, columns=['Exporter', 'Importers', 'Year'])
+df= one_hot_encoder(df,['Exporter', 'Importers'],True)
 
+#####################################################
+# Label Encoding
+#####################################################
+
+df = label_encoder(df, 'Year')
 
 #####################################################
 # Converting values to log(1+values)
 #####################################################
 
 # df['Value'] = np.log1p(df["Value"].values)
-
-
-#####################################################
-# Custom Cost Function
-#####################################################
-
-# MAE: mean absolute error
-# MAPE: mean absolute percentage error
-# SMAPE: Symmetric mean absolute percentage error (adjusted MAPE)
-
-
-def smape(preds, target):
-    n = len(preds)
-    masked_arr = ~((preds == 0) & (target == 0))
-    preds, target = preds[masked_arr], target[masked_arr]
-    num = np.abs(preds - target)
-    denom = np.abs(preds) + np.abs(target)
-    smape_val = (200 * np.sum(num / denom)) / n
-    return smape_val
-
-
-def lgbm_smape(preds, train_data):
-    labels = train_data.get_label()
-    smape_val = smape(np.expm1(preds), np.expm1(labels))
-    return 'SMAPE', smape_val, False
 
 
 #####################################################

@@ -31,7 +31,7 @@ all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
 imp_exp_list = ['Importers', 'Exporter']
 imp_exp_outer_list = [col for col in all_data.columns if col not in ['Importers', 'Exporter']]
 
-plot_metric = [True, False]
+plot_metric = [True, True]
 # Model oluşturma
 
 output_df = pd.DataFrame()
@@ -154,6 +154,8 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
 
     output_df = output_df.append(row)
 
+print('\n**********')
+print('\n**********')
 all_timer.stop()
 
 print('\n**********')
