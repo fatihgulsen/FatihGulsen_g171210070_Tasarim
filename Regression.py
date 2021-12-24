@@ -46,10 +46,12 @@ xg_timer = Timer(text="{:.4f} saniyedir XGBoost yapılıyor.",name='xg')
 for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra ile gitmektedir.
     index = row[0]
     row = row[1]  # pandas serieslere dönüştürmek için kullanıldı indexi ayrı tutuyoruz
+
     imp_exp = row[imp_exp_list]
     xy = row[imp_exp_outer_list].reset_index().rename(columns={'index': 'Year', index: 'Value'})
     xy = label_encoder(xy, 'Year')
     xy['Year'] = xy['Year'].apply(lambda lm: lm + 2009)
+
     # 0 yılı 2009 olarak kabul ediyoruz ve bunları label encoder ile integer değerlere dönüştürüoyurz
 
     x = xy.iloc[:-1, :-1]
@@ -137,7 +139,7 @@ for row in all_data.iterrows():  # 0 pandas index olmak üzere diğerleri sıra 
 
     # XG Boost
     xg_timer.start()
-    XGB = XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100)
+    XGB = XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100,n_jobs=-1)
     XGB.fit(X_values, Y_values)
 
     predictedXGB = XGB.predict(X_values)
