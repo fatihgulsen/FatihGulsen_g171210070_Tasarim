@@ -25,7 +25,7 @@ all_data = all_data.dropna(axis=0)
 all_data = all_data.rename(columns=lambda lm: re.sub('[^A-Za-z0-9_]+', '_', lm))
 all_data.sort_values(by=['Exporter', 'Importers'], axis=0, inplace=True)
 
-# all_data = all_data.loc[(all_data['Exporter'] == 'Argentina') & (all_data['Importers'] == 'Costa Rica')]
+all_data = all_data.loc[(all_data['Exporter'] == 'Argentina') & (all_data['Importers'] == 'Costa Rica')]
 # Rastgele 2 ülke seçilmiştir görselleştirme ve sonuçlar için
 
 imp_exp_list = ['Importers', 'Exporter']
@@ -173,7 +173,7 @@ xg_timer.timer_detail()
 print('\n**********')
 # %%
 output_file = True
-output_dir = 'argentina-costarica'
+output_dir = 'reg-import-exported-value'
 if output_file:
     try:
         output_df.to_csv(output_dir + '.csv', sep="\t", index=False)

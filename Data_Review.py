@@ -212,8 +212,76 @@ df['Exporter'].unique()
 df[['Product label']].nunique()
 df['Product label'].unique()
 
+# Ürün sayısı ve kodlar
+df[['Code']].nunique()
+df['Code'].unique()
+
 # Exporter ve ürünlerin   yoplam-ortalama-medyan ve standart sapma değerleri
 df.groupby(["Exporter"]).agg({"Value": ["sum", "mean", "median", "std"]})
+df.groupby(["Code"]).agg({"Value": ["sum", "mean", "median", "std"]})
+
+catplot_df = df_group_agg(df, ["Exporter", 'Product label'], {"Value": ["sum", "mean", "median", "std"]})
+
+exporter = df['Exporter'].unique()
+sinir_Deger = [10000000, 200000000, 150000000, 500000, 15000000, 150000000]
+
+for i, j in zip(exporter, sinir_Deger):
+    bar_plot(df_catplot=catplot_df, country=i, value=j, _x='Product label', _y='Value_sum', _col='Exporter')
+
+#######################
+# Elimizdeki tüm verilerin ticaret hacmi oranı
+pie_plot(_all_data=df, _x='Exporter', _y='Value', _title='Ticaret Hacimleri Oranı')
+
+
+# %%
+##################################################
+# Veri Seti importer-product
+##################################################
+all_data = pd.read_csv(r"VeriSetleri/All_Data/importer-product.csv", sep='\t')
+all_data.replace({'0': np.nan, 0: np.nan}, inplace=True)
+all_data = all_data.dropna(axis=0)
+col = all_data.columns
+cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
+check_df(all_data)
+
+# profile = pp.ProfileReport(all_data)
+# profile.to_file('profile.html')
+
+# Corr
+sns.heatmap(all_data.corr(), annot=True)
+plt.show()
+
+# Bütün yılları tek kolona aldık
+df = all_data.melt(id_vars=["Importer", 'Product label', 'Code'],
+                   var_name="Year",
+                   value_name="Value")
+
+df.sort_values(by=['Importer', 'Product label', 'Code', 'Year'], axis=0, inplace=True)
+df = df.loc[df['Code'] != 'TOTAL']  # Bütün verilerin toplamı bir daha olduğu için atıyoruz
+df.reset_index(drop=True, inplace=True)
+
+# profile = pp.ProfileReport(df)
+# profile.to_file('profile2.html')
+
+check_df(df)
+
+# Ticaret value dağılımı nasıl ?
+df[['Value']].describe().T
+
+# Exporter ülke sayısı ve ülkeler
+df[['Importer']].nunique()
+df['Importer'].unique()
+
+# Ürün sayısı ve çeşitleri
+df[['Product label']].nunique()
+df['Product label'].unique()
+
+# Ürün sayısı ve kodlar
+df[['Code']].nunique()
+df['Code'].unique()
+
+# Exporter ve ürünlerin   yoplam-ortalama-medyan ve standart sapma değerleri
+df.groupby(["Importer"]).agg({"Value": ["sum", "mean", "median", "std"]})
 df.groupby(["Code"]).agg({"Value": ["sum", "mean", "median", "std"]})
 
 catplot_df = df_group_agg(df, ["Exporter", 'Product label'], {"Value": ["sum", "mean", "median", "std"]})
