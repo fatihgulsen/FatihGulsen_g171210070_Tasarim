@@ -57,6 +57,9 @@ col = all_data.columns
 cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
 check_df(all_data)
 
+all_data.sample(10, random_state=1).T
+all_data.sample(10, random_state=1).T.to_excel("import-exported-value-sample.xlsx")
+
 # profile = pp.ProfileReport(all_data)
 # profile.to_file('profile.html')
 
@@ -119,6 +122,8 @@ col = all_data.columns
 cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
 check_df(all_data)
 
+all_data.sample(10, random_state=1).T
+all_data.sample(10, random_state=1).T.to_excel("export-imported-value-sample.xlsx")
 # profile = pp.ProfileReport(all_data)
 # profile.to_file('profile.html')
 
@@ -180,6 +185,10 @@ col = all_data.columns
 cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
 check_df(all_data)
 
+
+all_data.sample(10, random_state=1).T
+all_data.sample(10, random_state=1).T.to_excel("exporter-product-sample.xlsx")
+
 # profile = pp.ProfileReport(all_data)
 # profile.to_file('profile.html')
 
@@ -232,7 +241,6 @@ for i, j in zip(exporter, sinir_Deger):
 # Elimizdeki tüm verilerin ticaret hacmi oranı
 pie_plot(_all_data=df, _x='Exporter', _y='Value', _title='Ticaret Hacimleri Oranı')
 
-
 # %%
 ##################################################
 # Veri Seti importer-product
@@ -243,6 +251,9 @@ all_data = all_data.dropna(axis=0)
 col = all_data.columns
 cat_cols, cat_but_car, num_cols, num_but_cat = grab_col_names(all_data)
 check_df(all_data)
+
+all_data.sample(10, random_state=1).T
+all_data.sample(10, random_state=1).T.to_excel("importer-product-sample.xlsx")
 
 # profile = pp.ProfileReport(all_data)
 # profile.to_file('profile.html')
